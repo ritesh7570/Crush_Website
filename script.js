@@ -2,10 +2,8 @@
 const NAME = 'Roshani';
 const TYPE_SPEED = 130;
 
-// Static-safe answer delivery. Put a Formspree endpoint here after setup:
-// example: https://formspree.io/f/yourFormId
-// Do not put email passwords or secret keys in this file.
-const ANSWER_ENDPOINT = '';
+// Formspree endpoint for email delivery
+const ANSWER_ENDPOINT = 'https://formspree.io/f/xeajppgd';
 
 // ---------- gameplay state ----------
 const state = {
