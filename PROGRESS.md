@@ -1,16 +1,30 @@
 # Roshani interactive story - progress log
 
-## Status: updated
+## Status: updated with romantic UI
 
 ## 1. Complete list of changes
 - Converted the opening into a short playable story instead of a long quiz flow.
 - Added a funny first-screen friendship question where the "No" button moves away and the story continues only after "Yes, friendship accepted".
 - Reduced the experience to a compact set of mixed levels so it does not feel like an exam.
 - Kept the visual identity: night indigo, copper/marigold accents, warm text, lamp/Shiva/Ayurveda mood.
+- **[NEW] Added romantic visual elements: floating hearts (💕💖💗💓💝💞🧸) throughout the page with smooth animations**
+- **[NEW] Added heart decorations and emojis to each section (teddy bears, hearts, sparkles, moon, etc.)**
+- **[NEW] Updated color scheme with romantic rose tones (#e85a7f) for game panels, buttons, and accents**
+- **[NEW] Added romantic glow effects to the game overlay and buttons**
+- **[NEW] Enhanced final card with rose-tinted gradient and warm romantic styling**
 - Preserved the existing lamp ritual, typewriter name reveal, music toggle, scroll reveals, and tribute sections.
 - Added a small final diya message and the closing credit: "Created by Ritesh, AI Engineer".
 
-## 2. Current game levels
+## 2. Romantic UI enhancements
+- **Floating Hearts Animation**: 8 floating heart emojis gently float up from bottom to top with staggered timing
+- **Heart Pulse Effect**: Heart decorations pulse gently on each section (hero, note, confluence, tribute, final reveal, closing)
+- **Rose Color Accents**: Game panel borders and shadows now use romantic rose (#e85a7f) instead of plain copper
+- **Romantic Button Styling**: Final action buttons have gradient rose backgrounds with warm glow effects
+- **Teddy Bear Decorations**: 🧸 emojis placed around key sections with hearts
+- **Enhanced Final Card**: Rose-tinted gradient background with romantic glow shadow effects
+- **Responsive Typography**: Final message font size increased to 1.5rem for more intimate feel
+
+## 3. Current game levels
 - Level 00: Tiny friendship audit with moving No button.
 - Level 01: Randomized warm-up choice about the ideal evening.
 - Level 02: Card selection with three small "portal" choices.

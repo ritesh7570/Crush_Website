@@ -48,62 +48,51 @@ const FRIENDSHIP_LEVEL = {
 
 const STORY_LEVELS = [
   {
-    type: 'choice',
-    level: 'Level 01: Warm-up',
-    title: 'Pick the evening.',
-    prompt: 'No exam. No pressure. Just choose the most Roshani-coded plan.',
-    options: [
-      { label: 'Temple morning + quiet chai', value: 'temple', reaction: 'Peaceful answer. The lamp just stood a little straighter.' },
-      { label: 'Long ride + random talk', value: 'ride', reaction: 'Interesting. That is how ordinary evenings become stories.' },
-      { label: 'Food first, decisions later', value: 'food', reaction: 'Practical. Spiritual. Slightly dangerous around snacks.' },
-      { label: 'Depends on my mood', value: 'mood', reaction: 'A diplomatic answer from the Ministry of Mystery.' }
-    ]
-  },
-  {
-    type: 'cards',
-    level: 'Level 02: Choose A Portal',
-    title: 'Pick one small universe.',
-    prompt: 'The selected card will be treated as extremely important research.',
-    cards: [
-      { key: 'moon', icon: 'Moon', title: 'Late-night conversation', text: 'One topic becomes ten, and suddenly time has no manners.', reaction: 'Okay. You like depth with a side of "how is it 2 AM?"' },
-      { key: 'lamp', icon: 'Diya', title: 'Quiet peaceful evening', text: 'Soft light, slower thoughts, and no unnecessary noise.', reaction: 'That is calm, but the rare kind. Not boring. Just steady.' },
-      { key: 'leaf', icon: 'Leaf', title: 'Nature + long walk', text: 'A small escape where the mind finally stops running tabs.', reaction: 'Noted. Your reset button apparently has trees around it.' }
-    ]
-  },
-  {
-    type: 'memory',
-    level: 'Level 03: Lamp Hideout',
-    title: 'Find the diya.',
-    prompt: 'Memorize the symbols. They will hide in a second. Then tap where the diya was.',
-    cards: [
-      { symbol: 'Diya', key: 'lamp' },
-      { symbol: 'Moon', key: 'moon' },
-      { symbol: 'Om', key: 'om' },
-      { symbol: 'Leaf', key: 'leaf' }
-    ]
-  },
-  {
     type: 'rapid',
-    level: 'Level 04: Rapid Fire',
-    title: 'Rapid fire',
-    prompt: 'Pick fast. The website is pretending this is scientific.',
+    level: 'Level 04: Rapid Fire 🧸⚡',
+    title: 'Rapid fire! ⚡ Answer 8 quick questions!',
+    prompt: '🧸 Pick fast. (Teddy has a stopwatch. No pressure.) Funny comments come after each answer!',
     questions: [
-      { q: 'Tea or coffee?', options: ['Tea', 'Coffee'] },
-      { q: 'Sunrise or midnight?', options: ['Sunrise', 'Midnight'] },
-      { q: 'Planned trip or random trip?', options: ['Planned', 'Random'] },
-      { q: 'Call or text?', options: ['Call', 'Text'] }
-    ]
-  },
-  {
-    type: 'choice',
-    level: 'Level 05: No Comment',
-    title: 'One slightly suspicious question.',
-    prompt: 'If you enjoy talking to someone, what usually happens?',
-    options: [
-      { label: 'I tell them', value: 'tell', reaction: 'Clear communication. Rare species. Respect.' },
-      { label: 'I drop hints', value: 'hints', reaction: 'Ah, the ancient art of saying something without saying it.' },
-      { label: 'I wait and see', value: 'wait', reaction: 'Interesting. Very interesting. The website is looking at the ceiling.' },
-      { label: 'I pretend I do not care', value: 'pretend', reaction: 'That answer has drama, comedy, and a small weather warning.' }
+      { 
+        q: '☕ Tea or coffee?', 
+        options: ['Tea 🧋', 'Coffee ☕'],
+        reactions: ['☕ Tea lover! Calm and thoughtful. (Teddy approves.)', '☕ Coffee energy! You like things fast and bold. (Teddy is caffeinated now too!)']
+      },
+      { 
+        q: '🌅 Sunrise or midnight?', 
+        options: ['Sunrise 🌅', 'Midnight 🌙'],
+        reactions: ['🌅 Early bird! The world is yours at dawn. (Teddy is impressed.)', '🌙 Night owl! Where the magic happens. (Teddy gets it.)']
+      },
+      { 
+        q: '📍 Planned trip or random adventure?', 
+        options: ['Planned 📋', 'Random 🎲'],
+        reactions: ['📋 Planner! Organization is your superpower. (Teddy loves order.)', '🎲 Spontaneous! Life is the adventure. (Teddy is ready to go!)']
+      },
+      { 
+        q: '📞 Call or text?', 
+        options: ['Call 📞', 'Text 💬'],
+        reactions: ['📞 Call lover! Brave of you. (Teddy respects the courage.)', '💬 Text master! More time to think. (Teddy understands perfectly.)']
+      },
+      { 
+        q: '🎵 Music or silence?', 
+        options: ['Music 🎵', 'Silence 🤫'],
+        reactions: ['🎵 Music lover! Rhythm flows through you. (Teddy is dancing now.)', '🤫 Silence seeker! Peace is your space. (Teddy nods wisely.)']
+      },
+      { 
+        q: '📚 Fiction or reality?', 
+        options: ['Fiction 📖', 'Reality 📰'],
+        reactions: ['📖 Dreamer! Stories make the world beautiful. (Teddy loves good tales.)', '📰 Realist! Truth is powerful. (Teddy respects that.)']
+      },
+      { 
+        q: '🍕 Food adventure or comfort food?', 
+        options: ['Adventure 🌶️', 'Comfort 🍲'],
+        reactions: ['🌶️ Food adventurer! Life is spicy. (Teddy wants some!)', '🍲 Comfort seeker! Warmth is wisdom. (Teddy\'s favorite kind.)']
+      },
+      { 
+        q: '✨ Deeply ambitious or happily content?', 
+        options: ['Ambitious 🚀', 'Content 🌿'],
+        reactions: ['🚀 Ambitious soul! Sky is not the limit. (Teddy believes in you!)', '🌿 Content spirit! Growth comes naturally. (Teddy is proud.)']
+      }
     ]
   }
 ];
@@ -254,15 +243,19 @@ function moveButtonAway(button) {
   const y = Math.floor(Math.random() * maxY) - maxY / 3;
   button.classList.add('runaway-no');
   button.style.transform = `translate(${x}px, ${y}px) rotate(${state.noAttempts % 2 ? '-' : ''}6deg)`;
-  elements.reaction.textContent = state.noAttempts > 2
-    ? 'The No button has joined witness protection. Try the friendly button.'
-    : 'No? That button seems emotionally unavailable.';
+  const messages = [
+    '🧸 No? That button seems emotionally unavailable.',
+    '🧸😅 Teddy is shaking their head gently.',
+    '🧸👀 The No button has joined witness protection. Try the friendly button (Teddy insists).',
+    '🧸💔 Even the teddy bear is disappointed. (But in a very cute way.)'
+  ];
+  elements.reaction.textContent = messages[Math.min(state.noAttempts - 1, messages.length - 1)];
 }
 
 function renderFriendship(level) {
   elements.topline.textContent = level.level;
-  elements.title.textContent = level.title;
-  elements.prompt.textContent = level.prompt;
+  elements.title.textContent = level.title + ' 🧸💕';
+  elements.prompt.textContent = level.prompt + ' (The teddy bear says: choose wisely.)';
 
   const wrap = document.createElement('div');
   wrap.className = 'friendship-row';
@@ -271,7 +264,7 @@ function renderFriendship(level) {
   const no = makeButton('No', 'game-choice-btn no-choice');
 
   yes.addEventListener('click', () => {
-    const reaction = 'Correct answer. Your bravery has been approved by the diya committee.';
+    const reaction = '🧸✨ Correct answer. Your bravery has been approved by the diya committee (and the teddy bear).';
     recordAnswer(level.level, level.prompt, 'yes_friendship', reaction);
     elements.reaction.textContent = reaction;
     yes.classList.add('selected');
@@ -388,15 +381,16 @@ function renderMemory(level) {
 
 function renderRapid(level) {
   let index = 0;
+  let questionIndex = 0;
   const selected = [];
 
   function drawQuestion() {
-    const question = level.questions[index];
+    const question = level.questions[questionIndex];
     if (!question) {
       const answer = selected.map((item) => `${item.question}: ${item.answer}`).join(' | ');
-      const reaction = 'Result: dangerously interesting. The research team needs chai.';
+      const reaction = '✨ Result: dangerously interesting. The research team needs chai. ✨';
       recordAnswer(level.level, 'Rapid fire answers', answer, reaction);
-      elements.title.textContent = 'Calculated.';
+      elements.title.textContent = '🧸 Calculated.';
       elements.prompt.textContent = 'Your personality report is loading with unnecessary seriousness...';
       elements.choices.innerHTML = '<div class="progress-line"><span style="width:100%"></span></div>';
       elements.reaction.textContent = reaction;
@@ -406,24 +400,34 @@ function renderRapid(level) {
       return;
     }
 
-    elements.title.textContent = 'Rapid fire';
+    elements.title.textContent = `🧸 Rapid fire! Question ${questionIndex + 1}/8`;
     elements.prompt.textContent = question.q;
     elements.choices.innerHTML = '';
+    elements.reaction.textContent = '';
 
     const progress = document.createElement('div');
     progress.className = 'progress-line';
-    progress.innerHTML = `<span style="width:${(index / level.questions.length) * 100}%"></span>`;
+    progress.innerHTML = `<span style="width:${(questionIndex / level.questions.length) * 100}%"></span>`;
     elements.choices.appendChild(progress);
 
     const wrap = document.createElement('div');
     wrap.className = 'rapid-fire-wrap';
-    question.options.forEach((option) => {
+    question.options.forEach((option, optionIndex) => {
       const button = makeButton(option);
       button.addEventListener('click', () => {
         button.classList.add('selected');
+        const reaction = question.reactions[optionIndex] || '🧸 Good choice!';
         selected.push({ question: question.q, answer: option });
-        index += 1;
-        setTimeout(drawQuestion, 180);
+        
+        // Show reaction
+        elements.reaction.textContent = reaction;
+        
+        // Disable all buttons
+        document.querySelectorAll('.rapid-fire-wrap button').forEach(b => b.disabled = true);
+        
+        // Move to next question after a delay
+        questionIndex += 1;
+        setTimeout(drawQuestion, 1200);
       });
       wrap.appendChild(button);
     });
