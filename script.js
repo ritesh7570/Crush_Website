@@ -48,57 +48,115 @@ const FRIENDSHIP_LEVEL = {
 
 const STORY_LEVELS = [
   {
+    type: 'choice',
+    level: 'Level 01: Soft Start',
+    title: 'Teddy wants to know one thing',
+    prompt: 'What kind of friendship feels sweetest to you?',
+    options: [
+      { label: 'Laughing on silly things', value: 'funny', reaction: 'Teddy says: excellent, comedy is a serious friendship skill.' },
+      { label: 'Deep talks without judgement', value: 'deep', reaction: 'Teddy has written this down with a tiny golden pen.' },
+      { label: 'Small care, no drama', value: 'care', reaction: 'Very classy. Teddy is clapping very politely.' },
+      { label: 'Random plans and memories', value: 'random', reaction: 'Adventure department approved. Teddy packed imaginary snacks.' }
+    ]
+  },
+  {
+    type: 'cards',
+    level: 'Level 02: Teddy Picks A Mood',
+    title: 'Choose a cute little mood',
+    prompt: 'No right answer. Teddy will only judge a little.',
+    cards: [
+      { key: 'diya', icon: 'Soft diya', title: 'Peaceful Glow', text: 'Warm light, calm talk, and no unnecessary noise.', reaction: 'Teddy says this is girlfriend-friendly peace level 100.' },
+      { key: 'moon', icon: 'Moon note', title: 'Moon Message', text: 'A late little text that somehow becomes a full conversation.', reaction: 'Noted. Teddy is pretending not to smile.' },
+      { key: 'chai', icon: 'Chai plan', title: 'Chai Secret', text: 'Tea, snacks, and a conversation that forgets the time.', reaction: 'Teddy approves this plan with both paws.' }
+    ]
+  },
+  {
+    type: 'memory',
+    level: 'Level 03: Teddy Memory',
+    title: 'Find teddy heart',
+    prompt: 'Memorize the cards. When they hide, tap where the teddy heart was.',
+    cards: [
+      { symbol: 'Teddy heart', key: 'heart' },
+      { symbol: 'Moon', key: 'moon' },
+      { symbol: 'Om', key: 'om' },
+      { symbol: 'Leaf', key: 'leaf' }
+    ]
+  },
+  {
     type: 'rapid',
-    level: 'Level 04: Rapid Fire 🧸⚡',
-    title: 'Rapid fire! ⚡ Answer 8 quick questions!',
-    prompt: '🧸 Pick fast. (Teddy has a stopwatch. No pressure.) Funny comments come after each answer!',
+    level: 'Level 04: Rapid Fire',
+    title: 'Rapid fire! Four tiny questions',
+    prompt: 'Pick fast. Teddy has a stopwatch, but thankfully no exam paper.',
     questions: [
-      { 
-        q: '☕ Tea or coffee?', 
-        options: ['Tea 🧋', 'Coffee ☕'],
-        reactions: ['☕ Tea lover! Calm and thoughtful. (Teddy approves.)', '☕ Coffee energy! You like things fast and bold. (Teddy is caffeinated now too!)']
+      {
+        q: 'Tea or coffee?',
+        options: ['Tea', 'Coffee'],
+        reactions: ['Tea lover. Calm, thoughtful, and teddy-approved.', 'Coffee energy. Teddy is now alert and slightly dramatic.']
       },
-      { 
-        q: '🌅 Sunrise or midnight?', 
-        options: ['Sunrise 🌅', 'Midnight 🌙'],
-        reactions: ['🌅 Early bird! The world is yours at dawn. (Teddy is impressed.)', '🌙 Night owl! Where the magic happens. (Teddy gets it.)']
+      {
+        q: 'Sunrise or midnight?',
+        options: ['Sunrise', 'Midnight'],
+        reactions: ['Soft morning energy. Teddy respects the discipline.', 'Midnight mood. Teddy understands the secret conversation timing.']
       },
-      { 
-        q: '📍 Planned trip or random adventure?', 
-        options: ['Planned 📋', 'Random 🎲'],
-        reactions: ['📋 Planner! Organization is your superpower. (Teddy loves order.)', '🎲 Spontaneous! Life is the adventure. (Teddy is ready to go!)']
+      {
+        q: 'Planned trip or random plan?',
+        options: ['Planned', 'Random'],
+        reactions: ['Planner energy. Teddy loves a clean itinerary.', 'Random plan accepted. Teddy has no idea where we are going, but is ready.']
       },
-      { 
-        q: '📞 Call or text?', 
-        options: ['Call 📞', 'Text 💬'],
-        reactions: ['📞 Call lover! Brave of you. (Teddy respects the courage.)', '💬 Text master! More time to think. (Teddy understands perfectly.)']
-      },
-      { 
-        q: '🎵 Music or silence?', 
-        options: ['Music 🎵', 'Silence 🤫'],
-        reactions: ['🎵 Music lover! Rhythm flows through you. (Teddy is dancing now.)', '🤫 Silence seeker! Peace is your space. (Teddy nods wisely.)']
-      },
-      { 
-        q: '📚 Fiction or reality?', 
-        options: ['Fiction 📖', 'Reality 📰'],
-        reactions: ['📖 Dreamer! Stories make the world beautiful. (Teddy loves good tales.)', '📰 Realist! Truth is powerful. (Teddy respects that.)']
-      },
-      { 
-        q: '🍕 Food adventure or comfort food?', 
-        options: ['Adventure 🌶️', 'Comfort 🍲'],
-        reactions: ['🌶️ Food adventurer! Life is spicy. (Teddy wants some!)', '🍲 Comfort seeker! Warmth is wisdom. (Teddy\'s favorite kind.)']
-      },
-      { 
-        q: '✨ Deeply ambitious or happily content?', 
-        options: ['Ambitious 🚀', 'Content 🌿'],
-        reactions: ['🚀 Ambitious soul! Sky is not the limit. (Teddy believes in you!)', '🌿 Content spirit! Growth comes naturally. (Teddy is proud.)']
+      {
+        q: 'Call or text?',
+        options: ['Call', 'Text'],
+        reactions: ['Call chosen. Brave, direct, and very clear.', 'Text chosen. Thoughtful typing mode activated.']
       }
+    ]
+  },
+  {
+    type: 'choice',
+    level: 'Level 05: Teddy Confidential',
+    title: 'One last cute question',
+    prompt: 'If someone remembers tiny details about you, what is that?',
+    options: [
+      { label: 'Sweet', value: 'sweet', reaction: 'Teddy agrees. Small details are basically tiny flowers.' },
+      { label: 'Very sweet', value: 'very_sweet', reaction: 'That answer has been wrapped in a small ribbon.' },
+      { label: 'Suspiciously sweet', value: 'suspicious', reaction: 'Correct. Teddy is wearing detective glasses now.' },
+      { label: 'Depends who it is', value: 'depends', reaction: 'Aha. Teddy has stopped blinking. Interesting.' }
     ]
   }
 ];
 
 let gameDeck = [];
 let lit = false;
+let audioContext;
+
+function playUiSound(kind = 'tap') {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return;
+
+  audioContext = audioContext || new AudioCtx();
+  if (audioContext.state === 'suspended') audioContext.resume();
+
+  const now = audioContext.currentTime;
+  const oscillator = audioContext.createOscillator();
+  const gain = audioContext.createGain();
+  const soundMap = {
+    tap: [520, 700, 0.055],
+    focus: [420, 520, 0.04],
+    success: [620, 880, 0.11],
+    wrong: [190, 145, 0.1]
+  };
+  const [startFrequency, endFrequency, duration] = soundMap[kind] || soundMap.tap;
+
+  oscillator.type = kind === 'wrong' ? 'triangle' : 'sine';
+  oscillator.frequency.setValueAtTime(startFrequency, now);
+  oscillator.frequency.exponentialRampToValueAtTime(endFrequency, now + duration);
+  gain.gain.setValueAtTime(0.0001, now);
+  gain.gain.exponentialRampToValueAtTime(kind === 'wrong' ? 0.035 : 0.045, now + 0.01);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+  oscillator.connect(gain);
+  gain.connect(audioContext.destination);
+  oscillator.start(now);
+  oscillator.stop(now + duration + 0.02);
+}
 
 function shuffle(array) {
   const copy = [...array];
@@ -192,33 +250,33 @@ async function sendAnswerSummary() {
 }
 
 function buildResult() {
-  const scores = { midnight: 0, quiet: 0, chaos: 0, mystery: 0 };
+  const scores = { midnight: 0, quiet: 0, chaos: 0, sweet: 0 };
 
   state.answers.forEach((entry) => {
     const text = String(entry.answer).toLowerCase();
-    if (/(ride|midnight|random|moon|call)/.test(text)) scores.midnight += 1;
-    if (/(temple|diya|lamp|tea|sunrise|leaf|planned)/.test(text)) scores.quiet += 1;
-    if (/(food|mood|coffee|pretend)/.test(text)) scores.chaos += 1;
-    if (/(hints|wait|text|depends|om)/.test(text)) scores.mystery += 1;
+    if (/(random|midnight|moon|call)/.test(text)) scores.midnight += 1;
+    if (/(care|diya|tea|sunrise|leaf|planned)/.test(text)) scores.quiet += 1;
+    if (/(funny|coffee|suspicious)/.test(text)) scores.chaos += 1;
+    if (/(deep|sweet|very_sweet|chai|text|depends|heart)/.test(text)) scores.sweet += 1;
   });
 
   const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
   const resultMap = {
     midnight: {
       title: 'THE MIDNIGHT EXPLORER',
-      message: 'Spontaneous plans, long conversations, and decisions that become stories later.'
+      message: 'Spontaneous, curious, and very capable of turning one small plan into a full memory.'
     },
     quiet: {
       title: 'THE DIYA SOUL',
-      message: 'Peaceful, observant, and secretly powerful in the calmest possible way.'
+      message: 'Soft, peaceful, and quietly powerful. Teddy says this is premium calm energy.'
     },
     chaos: {
-      title: 'THE CHAOS SCHOLAR',
-      message: 'Planning is optional, snacks are strategic, and the mood has voting rights.'
+      title: 'THE CUTE CHAOS SCHOLAR',
+      message: 'Funny, expressive, and just unpredictable enough to keep the website nervous.'
     },
-    mystery: {
-      title: 'THE MYSTERY PERSON',
-      message: 'Somehow revealing a lot while revealing almost nothing. Impressive and inconvenient.'
+    sweet: {
+      title: 'THE TEDDY HEART',
+      message: 'Warm, thoughtful, and difficult not to smile around. Teddy is taking full credit.'
     }
   };
 
@@ -236,6 +294,7 @@ function makeButton(label, className = 'game-choice-btn') {
 
 function moveButtonAway(button) {
   state.noAttempts += 1;
+  playUiSound('wrong');
   const panel = button.closest('.game-panel');
   const maxX = Math.max(24, panel.clientWidth - button.offsetWidth - 32);
   const maxY = Math.max(24, panel.clientHeight - button.offsetHeight - 32);
@@ -244,18 +303,18 @@ function moveButtonAway(button) {
   button.classList.add('runaway-no');
   button.style.transform = `translate(${x}px, ${y}px) rotate(${state.noAttempts % 2 ? '-' : ''}6deg)`;
   const messages = [
-    '🧸 No? That button seems emotionally unavailable.',
-    '🧸😅 Teddy is shaking their head gently.',
-    '🧸👀 The No button has joined witness protection. Try the friendly button (Teddy insists).',
-    '🧸💔 Even the teddy bear is disappointed. (But in a very cute way.)'
+    'No? Teddy is politely confused.',
+    'Teddy is shaking its head gently.',
+    'The No button has joined witness protection. Try the friendly button.',
+    'Even teddy is disappointed, but in a very cute way.'
   ];
   elements.reaction.textContent = messages[Math.min(state.noAttempts - 1, messages.length - 1)];
 }
 
 function renderFriendship(level) {
   elements.topline.textContent = level.level;
-  elements.title.textContent = level.title + ' 🧸💕';
-  elements.prompt.textContent = level.prompt + ' (The teddy bear says: choose wisely.)';
+  elements.title.textContent = `${level.title} with teddy`;
+  elements.prompt.textContent = `${level.prompt} Teddy says: choose wisely.`;
 
   const wrap = document.createElement('div');
   wrap.className = 'friendship-row';
@@ -264,13 +323,14 @@ function renderFriendship(level) {
   const no = makeButton('No', 'game-choice-btn no-choice');
 
   yes.addEventListener('click', () => {
-    const reaction = '🧸✨ Correct answer. Your bravery has been approved by the diya committee (and the teddy bear).';
+    playUiSound('success');
+    const reaction = 'Correct answer. Your bravery has been approved by the diya committee and teddy.';
     recordAnswer(level.level, level.prompt, 'yes_friendship', reaction);
     elements.reaction.textContent = reaction;
     yes.classList.add('selected');
     no.disabled = true;
     elements.next.hidden = false;
-    elements.next.textContent = 'Start the tiny game';
+    elements.next.textContent = 'Start the cute game';
     elements.next.onclick = goNext;
   });
 
@@ -289,6 +349,7 @@ function renderChoice(level) {
   level.options.forEach((option) => {
     const button = makeButton(option.label);
     button.addEventListener('click', () => {
+      playUiSound('success');
       recordAnswer(level.level, level.prompt, option.value, option.reaction);
       document.querySelectorAll('.game-choice-btn').forEach((item) => item.classList.remove('selected'));
       button.classList.add('selected');
@@ -311,12 +372,13 @@ function renderCards(level) {
     button.className = 'story-card';
     button.innerHTML = `<span class="card-icon">${card.icon}</span><h3>${card.title}</h3><p>${card.text}</p>`;
     button.addEventListener('click', () => {
+      playUiSound('success');
       document.querySelectorAll('.story-card').forEach((item) => item.classList.remove('selected'));
       button.classList.add('selected');
       recordAnswer(level.level, level.prompt, card.key, card.reaction);
       elements.reaction.textContent = card.reaction;
       elements.next.hidden = false;
-      elements.next.textContent = 'Portal accepted';
+      elements.next.textContent = 'Mood accepted';
       elements.next.onclick = goNext;
     });
     wrap.appendChild(button);
@@ -344,10 +406,11 @@ function renderMemory(level) {
       button.classList.add('revealed');
       button.textContent = card.symbol;
 
-      if (card.key === 'lamp') {
+      if (card.key === 'heart') {
         locked = true;
-        const reaction = 'Found it. The diya approves your detective career.';
-        recordAnswer(level.level, level.prompt, 'lamp_found', reaction);
+        playUiSound('success');
+        const reaction = 'Found it. Teddy is holding the heart like a trophy.';
+        recordAnswer(level.level, level.prompt, 'teddy_heart_found', reaction);
         elements.reaction.textContent = reaction;
         elements.next.hidden = false;
         elements.next.textContent = 'Continue';
@@ -355,7 +418,8 @@ function renderMemory(level) {
         return;
       }
 
-      elements.reaction.textContent = 'That was not the diya. The diya is being dramatic. Try again.';
+      playUiSound('wrong');
+      elements.reaction.textContent = 'Not that one. Teddy hid the heart better than expected. Try again.';
       setTimeout(() => {
         button.classList.remove('revealed');
         button.textContent = '?';
@@ -366,7 +430,7 @@ function renderMemory(level) {
   });
 
   elements.choices.appendChild(wrap);
-  elements.reaction.textContent = 'Look carefully...';
+  elements.reaction.textContent = 'Look carefully. Teddy is being mysterious.';
 
   setTimeout(() => {
     hidden = true;
@@ -375,12 +439,12 @@ function renderMemory(level) {
       button.classList.remove('revealed');
       button.textContent = '?';
     });
-    elements.reaction.textContent = 'Now tap where the diya was.';
+    elements.reaction.textContent = 'Now tap where teddy heart was.';
+    playUiSound('focus');
   }, 1500);
 }
 
 function renderRapid(level) {
-  let index = 0;
   let questionIndex = 0;
   const selected = [];
 
@@ -388,19 +452,20 @@ function renderRapid(level) {
     const question = level.questions[questionIndex];
     if (!question) {
       const answer = selected.map((item) => `${item.question}: ${item.answer}`).join(' | ');
-      const reaction = '✨ Result: dangerously interesting. The research team needs chai. ✨';
+      const reaction = 'Result: dangerously cute. Teddy needs chai after all this research.';
       recordAnswer(level.level, 'Rapid fire answers', answer, reaction);
-      elements.title.textContent = '🧸 Calculated.';
+      elements.title.textContent = 'Calculated.';
       elements.prompt.textContent = 'Your personality report is loading with unnecessary seriousness...';
       elements.choices.innerHTML = '<div class="progress-line"><span style="width:100%"></span></div>';
       elements.reaction.textContent = reaction;
       elements.next.hidden = false;
       elements.next.textContent = 'Show result';
       elements.next.onclick = goNext;
+      playUiSound('success');
       return;
     }
 
-    elements.title.textContent = `🧸 Rapid fire! Question ${questionIndex + 1}/8`;
+    elements.title.textContent = `Rapid fire! Question ${questionIndex + 1}/${level.questions.length}`;
     elements.prompt.textContent = question.q;
     elements.choices.innerHTML = '';
     elements.reaction.textContent = '';
@@ -415,19 +480,14 @@ function renderRapid(level) {
     question.options.forEach((option, optionIndex) => {
       const button = makeButton(option);
       button.addEventListener('click', () => {
+        playUiSound('tap');
         button.classList.add('selected');
-        const reaction = question.reactions[optionIndex] || '🧸 Good choice!';
+        const reaction = question.reactions[optionIndex] || 'Good choice. Teddy approves.';
         selected.push({ question: question.q, answer: option });
-        
-        // Show reaction
         elements.reaction.textContent = reaction;
-        
-        // Disable all buttons
-        document.querySelectorAll('.rapid-fire-wrap button').forEach(b => b.disabled = true);
-        
-        // Move to next question after a delay
+        document.querySelectorAll('.rapid-fire-wrap button').forEach((item) => { item.disabled = true; });
         questionIndex += 1;
-        setTimeout(drawQuestion, 1200);
+        setTimeout(drawQuestion, 1050);
       });
       wrap.appendChild(button);
     });
@@ -443,10 +503,11 @@ function showGameResult() {
   elements.topline.textContent = 'Official Result';
   elements.title.textContent = result.title;
   elements.prompt.textContent = result.message;
-  elements.reaction.textContent = 'One tiny diya is waiting at the end. Obviously.';
+  elements.reaction.textContent = 'One tiny diya is waiting at the end. Teddy is guarding it.';
   elements.next.hidden = false;
   elements.next.textContent = 'Reveal the diya';
   elements.next.onclick = async () => {
+    playUiSound('success');
     await sendAnswerSummary();
     showSite();
   };
@@ -517,6 +578,7 @@ function typeName() {
 function lightLamp() {
   if (lit) return;
   lit = true;
+  playUiSound('success');
 
   elements.lampBtn.classList.add('lit');
   elements.lampHint.classList.add('hidden');
@@ -563,9 +625,26 @@ document.querySelectorAll('.reveal-target').forEach((card) => {
   });
 });
 
+// ---------- post-reveal mini choice ----------
+document.querySelectorAll('.game-choice').forEach((button) => {
+  button.addEventListener('click', () => {
+    const result = document.getElementById('gameResult');
+    const isCorrect = button.dataset.correct === 'true';
+    playUiSound(isCorrect ? 'success' : 'wrong');
+    document.querySelectorAll('.game-choice').forEach((item) => item.classList.remove('selected'));
+    button.classList.add('selected');
+    if (result) {
+      result.textContent = isCorrect
+        ? 'Correct. The lamp and teddy were secretly on the same team.'
+        : 'Close, but teddy says the lamp is still the main character.';
+    }
+  });
+});
+
 // ---------- final tiny yes/no ----------
 if (elements.finalYes && elements.finalNo) {
   elements.finalYes.addEventListener('click', () => {
+    playUiSound('success');
     elements.finalCard.hidden = false;
     elements.finalChoiceText.textContent = 'Small diya message unlocked: May your path stay bright, peaceful, and a little funny.';
   });
@@ -573,16 +652,18 @@ if (elements.finalYes && elements.finalNo) {
   ['pointerenter', 'focus', 'click', 'touchstart'].forEach((eventName) => {
     elements.finalNo.addEventListener(eventName, (event) => {
       event.preventDefault();
+      playUiSound('wrong');
       const x = Math.floor(Math.random() * 120) - 60;
       const y = Math.floor(Math.random() * 90) - 45;
       elements.finalNo.style.transform = `translate(${x}px, ${y}px)`;
-      elements.finalChoiceText.textContent = 'The No button is shy. The Yes button is emotionally stable.';
+      elements.finalChoiceText.textContent = 'The No button is shy. Teddy recommends Yes.';
     });
   });
 }
 
 // ---------- sound toggle ----------
 elements.soundToggle.addEventListener('click', () => {
+  playUiSound('tap');
   if (elements.bgAudio.paused) {
     elements.bgAudio.play().catch(() => {});
     elements.soundToggle.classList.remove('muted');
@@ -590,6 +671,15 @@ elements.soundToggle.addEventListener('click', () => {
     elements.bgAudio.pause();
     elements.soundToggle.classList.add('muted');
   }
+});
+
+// ---------- all button feedback ----------
+document.addEventListener('click', (event) => {
+  if (event.target.closest('button')) playUiSound('tap');
+});
+
+document.addEventListener('focusin', (event) => {
+  if (event.target.closest('button')) playUiSound('focus');
 });
 
 // ---------- lamp interaction ----------

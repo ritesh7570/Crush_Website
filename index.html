@@ -11,16 +11,15 @@
 </head>
 <body class="story-locked">
 
-<!-- Floating hearts decoration -->
 <div class="hearts-container" aria-hidden="true">
-  <div class="floating-heart">💕</div>
-  <div class="floating-heart">💖</div>
-  <div class="floating-heart">💗</div>
-  <div class="floating-heart">💓</div>
-  <div class="floating-heart">💝</div>
-  <div class="floating-heart">💞</div>
-  <div class="floating-heart">💕</div>
-  <div class="floating-heart">🧸</div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
+  <div class="floating-heart"></div>
 </div>
 
 <div class="sky" aria-hidden="true">
@@ -30,6 +29,19 @@
 
 <div id="gameOverlay" class="game-overlay" aria-live="polite">
   <div class="game-panel">
+    <div class="teddy-mascot" aria-hidden="true">
+      <div class="teddy-ear teddy-ear-left"></div>
+      <div class="teddy-ear teddy-ear-right"></div>
+      <div class="teddy-head">
+        <span class="teddy-eye teddy-eye-left"></span>
+        <span class="teddy-eye teddy-eye-right"></span>
+        <span class="teddy-muzzle"></span>
+        <span class="teddy-smile"></span>
+      </div>
+      <div class="teddy-body">
+        <span class="teddy-heart"></span>
+      </div>
+    </div>
     <div class="game-topline" id="gameTopline">Level 00</div>
     <h2 id="gameTitle">Before you enter...</h2>
     <p id="gamePrompt" class="game-prompt"></p>
@@ -43,15 +55,13 @@
 </div>
 
 <div class="site-shell" id="siteShell">
-  <!-- sound control, appears after lamp is lit -->
   <button id="soundToggle" class="sound-toggle" aria-label="Toggle music" hidden>
-    <span class="sound-icon">♪</span>
+    <span class="sound-icon">&#9835;</span>
   </button>
 
-  <!-- ============ HERO / LAMP RITUAL ============ -->
   <section class="hero" id="hero">
-    <p class="eyebrow">श्री गणेशाय नमः</p>
-    <p class="heart-accent">💕</p>
+    <p class="eyebrow">Shree Ganeshaya Namah</p>
+    <p class="heart-accent">&#10084;</p>
 
     <button id="lampBtn" class="lamp" aria-label="Light the lamp">
       <svg viewBox="0 0 120 160" class="lamp-svg">
@@ -66,9 +76,8 @@
     </button>
 
     <p class="lamp-hint" id="lampHint">tap the lamp</p>
-
     <h1 class="name" id="nameText" aria-label="Roshani"></h1>
-    <p class="tagline reveal-on-light">a page lit for you, not built for anyone else 💖</p>
+    <p class="tagline reveal-on-light">a page lit for you, not built for anyone else</p>
 
     <div class="scroll-cue reveal-on-light" aria-hidden="true">
       <span></span>
@@ -76,66 +85,63 @@
     </div>
   </section>
 
-  <!-- ============ THE NOTE ============ -->
   <section class="note reveal-section" id="note">
-    <p class="heart-deco">🧸 💕 🧸</p>
+    <p class="heart-deco">&#10084; teddy approved &#10084;</p>
     <p class="eyebrow">to roshani</p>
-    <h2>Second year of a life you're building on purpose. ✨</h2>
+    <h2>Second year of a life you're building on purpose.</h2>
     <p class="note-body">
-      Most people pick one road. You're walking two — the pulse and the prescription
-      on one side, mantra and memory on the other — and somehow making them meet.
+      Most people pick one road. You're walking two: the pulse and the prescription
+      on one side, mantra and memory on the other, and somehow making them meet.
       That takes a kind of steadiness I don't see very often. This page is small
       and it doesn't try to be more than what it is: a quiet way of saying I
       notice the effort behind the ease you make it look like. The quiet kind of
-      <button class="tap-reveal" type="button" data-reveal="Some people call it balance. I call it the kind of calm that isn’t easy to fake.">excellence</button> is usually the hardest to name.
+      <button class="tap-reveal" type="button" data-reveal="Some people call it balance. I call it the kind of calm that is not easy to fake.">excellence</button> is usually the hardest to name.
     </p>
   </section>
 
-  <!-- ============ TWO PATHS / CONFLUENCE ============ -->
   <section class="confluence reveal-section" id="confluence">
     <p class="eyebrow">two rivers, one direction</p>
-    <h2>संगम 💑</h2>
+    <h2>Sangam</h2>
     <div class="paths">
-      <div class="path path-modern reveal-target" tabindex="0" role="button" data-reveal="This side studies the body with precision — careful, exact, and deeply useful.">
+      <div class="path path-modern reveal-target" tabindex="0" role="button" data-reveal="This side studies the body with precision: careful, exact, and deeply useful.">
         <svg viewBox="0 0 48 48" class="path-icon"><path d="M24 4 L24 20 M14 20 L34 20 M24 20 L24 30 A10 10 0 1 0 24 44" fill="none"/><circle cx="24" cy="30" r="3"/></svg>
         <h3>the modern</h3>
-        <p>Diagnosis, evidence, the clean logic of a textbook — the half of medicine that measures.</p>
-        <span class="target-note" hidden>This side studies the body with precision — careful, exact, and deeply useful.</span>
+        <p>Diagnosis, evidence, the clean logic of a textbook: the half of medicine that measures.</p>
+        <span class="target-note" hidden>This side studies the body with precision: careful, exact, and deeply useful.</span>
       </div>
       <div class="path-divider" aria-hidden="true"><span></span></div>
-      <div class="path path-vedic reveal-target" tabindex="0" role="button" data-reveal="This side listens to the whole person — rhythm, breath, and a deeper kind of repair.">
+      <div class="path path-vedic reveal-target" tabindex="0" role="button" data-reveal="This side listens to the whole person: rhythm, breath, and a deeper kind of repair.">
         <svg viewBox="0 0 48 48" class="path-icon"><path d="M24 6 C10 14 10 30 24 42 C38 30 38 14 24 6 Z" fill="none"/><path d="M24 14 L24 34" fill="none"/></svg>
         <h3>the vedic</h3>
-        <p>Ayurveda, rhythm, the older logic that treats the whole person — the half that listens.</p>
-        <span class="target-note" hidden>This side listens to the whole person — rhythm, breath, and a deeper kind of repair.</span>
+        <p>Ayurveda, rhythm, the older logic that treats the whole person: the half that listens.</p>
+        <span class="target-note" hidden>This side listens to the whole person: rhythm, breath, and a deeper kind of repair.</span>
       </div>
     </div>
-    <p class="confluence-line">BAMS — two years in, and already fluent in both.</p>
+    <p class="confluence-line">BAMS: two years in, and already fluent in both.</p>
   </section>
 
-  <!-- ============ SHIVA TRIBUTE ============ -->
   <section class="tribute reveal-section" id="tribute">
     <div class="om-mark" aria-hidden="true">
       <svg viewBox="0 0 100 100"><path d="M50 12 C34 12 30 26 40 32 C48 36 44 44 34 42 C22 40 18 54 30 62 C24 66 22 78 34 82 C46 86 56 78 54 66 C60 70 70 66 68 56 C66 48 56 50 56 42 C56 34 66 34 66 26 C66 16 56 12 50 12 Z" fill="none"/><path d="M62 62 Q72 70 66 82" fill="none"/><circle cx="70" cy="52" r="2.4"/></svg>
     </div>
-    <p class="heart-deco">💖</p>
-    <p class="eyebrow">महादेव</p>
-    <h2>Stillness, on purpose. 🌙</h2>
+    <p class="heart-deco">&#10084;</p>
+    <p class="eyebrow">Mahadev</p>
+    <h2>Stillness, on purpose.</h2>
     <p class="tribute-body">
-      Shiva isn't the loud one in the stories — he's the one who can sit at the
+      Shiva isn't the loud one in the stories. He is the one who can sit at the
       center of everything falling apart and not move. That's not a small thing
       to admire, or a small thing to try to carry into your own days. I think
       that's part of what I see in you: the calm that isn't absence of feeling,
-      it's just better held.
+      it is just better held.
     </p>
-    <button class="hidden-line-trigger" type="button" data-reveal="Some things aren't meant to be explained. Just experienced.">A quiet line, if you care to look.</button>
-    <p class="tribute-mantra">ॐ नमः शिवाय</p>
+    <button class="hidden-line-trigger" type="button" data-reveal="Some things are not meant to be explained. Just experienced.">A quiet line, if you care to look.</button>
+    <p class="tribute-mantra">Om Namah Shivaya</p>
   </section>
 
   <section class="mini-game reveal-section" id="miniGame">
-    <p class="heart-deco">💕 💕 💕</p>
+    <p class="heart-deco">&#10084; &#10084; &#10084;</p>
     <p class="eyebrow">one last thing</p>
-    <h2>Which one is the real guide here? 💡</h2>
+    <h2>Which one is the real guide here?</h2>
     <div class="game-choices" role="list">
       <button class="game-choice" type="button" data-correct="false">the stethoscope</button>
       <button class="game-choice" type="button" data-correct="true">the lamp</button>
@@ -145,10 +151,10 @@
   </section>
 
   <section class="final-reveal reveal-section" id="finalReveal">
-    <p class="heart-deco">🧸 💗 🧸</p>
+    <p class="heart-deco">&#10084; teddy note &#10084;</p>
     <p class="eyebrow">after the light</p>
-    <h2>Okay. You made it this far. 💫</h2>
-    <p>So I suppose you deserve to know... 💕</p>
+    <h2>Okay. You made it this far.</h2>
+    <p>So I suppose you deserve to know...</p>
     <div class="final-card" id="finalCard" hidden>
       <p class="final-message">Like a diya, you make quiet things feel bright. Roshani, this little game was made to make you smile first, then leave one soft line behind: your calm, your devotion, and your way of being thoughtful are genuinely rare.</p>
     </div>
@@ -160,15 +166,14 @@
     <p id="finalChoiceText" class="final-choice" aria-live="polite"></p>
   </section>
 
-  <!-- ============ CLOSING ============ -->
   <section class="closing reveal-section" id="closing">
-    <p class="heart-deco">💕 🧸 💕</p>
-    <h2>No pressure. Just a little light. 💞</h2>
+    <p class="heart-deco">&#10084; little teddy blessing &#10084;</p>
+    <h2>No pressure. Just a little light.</h2>
     <p class="closing-body">
       Just wanted you to have something that felt like it was made for exactly
       one person, because it was.
     </p>
-    <p class="signature">— Ritesh</p>
+    <p class="signature">- Ritesh</p>
     <p class="creator-credit">Created by Ritesh, AI Engineer</p>
   </section>
 </div>
