@@ -120,10 +120,10 @@ body.story-passed .site-shell{
 }
 .game-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none;}
 .game-panel{
-  width:min(92vw, 640px);max-height:calc(100svh - 2rem);overflow-y:auto;background:linear-gradient(180deg, rgba(19,25,43,0.95), rgba(13,18,32,0.8));border:1px solid rgba(232,90,127,.35);
+  width:min(92vw, 640px);max-height:calc(100dvh - 2rem);overflow-y:auto;background:linear-gradient(180deg, rgba(19,25,43,0.95), rgba(13,18,32,0.8));border:1px solid rgba(232,90,127,.35);
   border-radius:28px;padding:1.5rem 1.2rem 1.25rem;box-shadow:0 22px 50px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 30px rgba(232,90,127,.15);
-  text-align:center;min-height:420px;display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden;
+  text-align:center;min-height:420px;display:flex;flex-direction:column;justify-content:flex-start;
+  position:relative;overflow-x:hidden;
 }
 .game-panel::before {
   content:"";
@@ -213,8 +213,9 @@ body.story-passed .site-shell{
 .no-choice.runaway-no{position:relative;z-index:2;border-color:rgba(241,237,228,.2);opacity:.86;}
 .no-choice:disabled{opacity:.35;cursor:not-allowed;}
 .game-reaction{min-height:2.2em;margin-top:1rem;color:var(--copper);font-size:.96rem;line-height:1.6;}
+.game-actions{position:sticky;bottom:0;z-index:2;display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap;padding:.75rem 0 .1rem;background:linear-gradient(180deg, rgba(13,18,32,0), rgba(13,18,32,.98) 34%);}
 .game-next{
-  margin-top:1rem;padding:.9rem 1.2rem;border-radius:999px;background:linear-gradient(135deg, var(--copper), #f0b86d);color:var(--night);
+  margin-top:.25rem;padding:.9rem 1.2rem;border-radius:999px;background:linear-gradient(135deg, var(--copper), #f0b86d);color:var(--night);
   font-weight:700;letter-spacing:.12em;text-transform:uppercase;align-self:center;min-width:180px;
 }
 .game-next.alt{background:rgba(255,255,255,.03);color:var(--vibhuti);border:1px solid rgba(224,149,74,.18);}
@@ -386,7 +387,7 @@ body.story-passed .site-shell{
 
 /* ---------- sound toggle ---------- */
 .sound-toggle{
-  position:fixed;bottom:22px;right:22px;z-index:10;
+  position:fixed;bottom:22px;right:22px;z-index:13;
   width:46px;height:46px;border-radius:50%;
   background:rgba(28,36,64,.75);border:1px solid rgba(224,149,74,.35);
   color:var(--copper);font-size:1.1rem;cursor:pointer;
@@ -396,7 +397,6 @@ body.story-passed .site-shell{
 }
 .sound-toggle:active{transform:scale(.92);}
 .sound-toggle.muted{color:var(--silver);opacity:.5;}
-.sound-toggle[hidden]{display:none;}
 
 @media (min-width: 640px){
   .game-choices{grid-template-columns:repeat(3, minmax(0,1fr));}
@@ -407,5 +407,5 @@ body.story-passed .site-shell{
 /* ---------- small screens polish ---------- */
 @media (max-width:400px){
   .reveal-section{padding:11vh 6vw;}
-  .game-panel{min-height:360px;padding:1.2rem .9rem 1rem;}
+  .game-panel{min-height:0;padding:1.2rem .9rem 1rem;}
 }

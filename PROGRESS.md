@@ -98,3 +98,10 @@ const ANSWER_ENDPOINT = 'https://formspree.io/f/yourFormId';
 - Game overlay panels are constrained to the viewport and scroll internally, keeping the Level 2 action button inside the frame on mobile.
 - Added the root audio file `WhatsApp Audio 2026-08-19 at 19.32.47.mpeg` to the Shiva/Mahadev section; it plays when that section enters view and pauses when it leaves.
 - Verified with `node --check .\\script.js` and a 390x844 browser flow through Level 2. The panel and action button stayed within the viewport.
+
+## 12. Mobile and privacy fixes
+- Made the music button visible above the locked game overlay on mobile devices.
+- Made the Level 2 action row sticky so its button remains visible while the cards scroll.
+- Removed geolocation permission requests and location data from answer submissions.
+- Submission data now includes only a generic platform label such as Android, Windows, or iOS.
+- Verified at 360x800: sound button visible, Level 2 action visible inside the panel, and panel scrolling enabled.

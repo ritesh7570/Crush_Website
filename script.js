@@ -215,72 +215,8 @@ function buildSummary() {
 }
 
 function getDeviceInfo() {
-  const ua = navigator.userAgent;
-  const isWindows = ua.indexOf('Windows') > -1;
-  const isMac = ua.indexOf('Mac') > -1;
-  const isLinux = ua.indexOf('Linux') > -1;
-  const isAndroid = ua.indexOf('Android') > -1;
-  const isIPhone = ua.indexOf('iPhone') > -1;
-  const isIPad = ua.indexOf('iPad') > -1;
-
-  let os = 'Unknown';
-  if (isWindows) os = 'Windows';
-  if (isMac) os = 'MacOS';
-  if (isLinux) os = 'Linux';
-  if (isAndroid) os = 'Android';
-  if (isIPhone) os = 'iOS';
-  if (isIPad) os = 'iPadOS';
-
-  const isMobile = isAndroid || isIPhone || isIPad;
-
-  return {
-    userAgent: ua,
-    os: os,
-    deviceType: isMobile ? 'Mobile' : 'Desktop',
-    screenResolution: `${screen.width}x${screen.height}`,
-    screenColorDepth: screen.colorDepth,
-    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    language: navigator.language,
-    onlineStatus: navigator.onLine ? 'Online' : 'Offline'
-  };
-}
-
-async function getLocationInfo() {
-  return new Promise((resolve) => {
-    const defaultLocation = {
-      available: false,
-      latitude: null,
-      longitude: null,
-      accuracy: null,
-      error: 'Location access denied or unavailable'
-    };
-
-    if (!navigator.geolocation) {
-      resolve(defaultLocation);
-      return;
-    }
-
-    const timeout = setTimeout(() => {
-      resolve(defaultLocation);
-    }, 5000);
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        clearTimeout(timeout);
-        resolve({
-          available: true,
-          latitude: position.coords.latitude.toFixed(4),
-          longitude: position.coords.longitude.toFixed(4),
-          accuracy: position.coords.accuracy.toFixed(0),
-          timestamp: new Date(position.timestamp).toISOString()
-        });
-      },
-      (error) => {
-        clearTimeout(timeout);
-        resolve({ ...defaultLocation, error: error.message });
-      }
-    );
-  });
+  const platform = navigator.userAgentData?.platform || navigator.platform || 'Unknown device';
+  return { deviceName: platform };
 }
 
 async function sendAnswerSummary() {
@@ -289,7 +225,6 @@ async function sendAnswerSummary() {
 
   const summary = buildSummary();
   const deviceInfo = getDeviceInfo();
-  const locationInfo = await getLocationInfo();
 
   const payload = {
     sessionId: state.sessionId,
@@ -297,8 +232,7 @@ async function sendAnswerSummary() {
     answers: state.answers,
     result: state.result,
     message: summary,
-    device: deviceInfo,
-    location: locationInfo
+    device: deviceInfo
   };
 
   localStorage.setItem('roshani-game-session', JSON.stringify(payload));
@@ -581,7 +515,7 @@ function showGameResult() {
   elements.next.textContent = 'Reveal the diya';
   elements.next.onclick = async () => {
     playUiSound('success');
-    await sendAnswerSummary();
+    sendAnswerSummary();
     showSite();
   };
   elements.replay.hidden = false;
@@ -659,7 +593,6 @@ function lightLamp() {
 
   typeName();
 
-  elements.soundToggle.hidden = false;
   elements.bgAudio.volume = 0.55;
   elements.bgAudio.play().catch(() => {
     elements.soundToggle.classList.add('muted');
