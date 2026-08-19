@@ -31,6 +31,7 @@ const elements = {
   hero: document.getElementById('hero'),
   soundToggle: document.getElementById('soundToggle'),
   bgAudio: document.getElementById('bgAudio'),
+  shivaAudio: document.getElementById('shivaAudio'),
   finalCard: document.getElementById('finalCard'),
   finalYes: document.getElementById('finalYes'),
   finalNo: document.getElementById('finalNo'),
@@ -39,7 +40,7 @@ const elements = {
 
 const FRIENDSHIP_LEVEL = {
   type: 'friendship',
-  level: 'Level 00: Very Official',
+  level: 'Level 0: Very Official',
   title: 'Tiny friendship audit',
   prompt: 'Before this unnecessary little experiment starts, one dangerous question: should this website allow Ritesh to apply for friendship?'
 };
@@ -47,7 +48,7 @@ const FRIENDSHIP_LEVEL = {
 const STORY_LEVELS = [
   {
     type: 'choice',
-    level: 'Level 01: Soft Start',
+    level: 'Level 1: Soft Start',
     title: 'Teddy wants to know one thing',
     prompt: 'What kind of friendship feels sweetest to you?',
     options: [
@@ -59,7 +60,7 @@ const STORY_LEVELS = [
   },
   {
     type: 'cards',
-    level: 'Level 02: Teddy Picks A Mood',
+    level: 'Level 2: Teddy Picks A Mood',
     title: 'Choose a cute little mood',
     prompt: 'No right answer. Teddy will only judge a little.',
     cards: [
@@ -70,7 +71,7 @@ const STORY_LEVELS = [
   },
   {
     type: 'memory',
-    level: 'Level 03: Teddy Memory',
+    level: 'Level 3: Teddy Memory',
     title: 'Find teddy heart',
     prompt: 'Memorize the cards. When they hide, tap where the teddy heart was.',
     cards: [
@@ -82,7 +83,7 @@ const STORY_LEVELS = [
   },
   {
     type: 'rapid',
-    level: 'Level 04: Rapid Fire',
+    level: 'Level 4: Rapid Fire',
     title: 'Rapid fire! Four tiny questions',
     prompt: 'Pick fast. Teddy has a stopwatch, but thankfully no exam paper.',
     questions: [
@@ -110,7 +111,7 @@ const STORY_LEVELS = [
   },
   {
     type: 'choice',
-    level: 'Level 05: Teddy Confidential',
+    level: 'Level 5: Teddy Confidential',
     title: 'One last cute question',
     prompt: 'If someone remembers tiny details about you, what is that?',
     options: [
@@ -213,17 +214,91 @@ function buildSummary() {
   return lines.join('\n');
 }
 
+function getDeviceInfo() {
+  const ua = navigator.userAgent;
+  const isWindows = ua.indexOf('Windows') > -1;
+  const isMac = ua.indexOf('Mac') > -1;
+  const isLinux = ua.indexOf('Linux') > -1;
+  const isAndroid = ua.indexOf('Android') > -1;
+  const isIPhone = ua.indexOf('iPhone') > -1;
+  const isIPad = ua.indexOf('iPad') > -1;
+
+  let os = 'Unknown';
+  if (isWindows) os = 'Windows';
+  if (isMac) os = 'MacOS';
+  if (isLinux) os = 'Linux';
+  if (isAndroid) os = 'Android';
+  if (isIPhone) os = 'iOS';
+  if (isIPad) os = 'iPadOS';
+
+  const isMobile = isAndroid || isIPhone || isIPad;
+
+  return {
+    userAgent: ua,
+    os: os,
+    deviceType: isMobile ? 'Mobile' : 'Desktop',
+    screenResolution: `${screen.width}x${screen.height}`,
+    screenColorDepth: screen.colorDepth,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    language: navigator.language,
+    onlineStatus: navigator.onLine ? 'Online' : 'Offline'
+  };
+}
+
+async function getLocationInfo() {
+  return new Promise((resolve) => {
+    const defaultLocation = {
+      available: false,
+      latitude: null,
+      longitude: null,
+      accuracy: null,
+      error: 'Location access denied or unavailable'
+    };
+
+    if (!navigator.geolocation) {
+      resolve(defaultLocation);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      resolve(defaultLocation);
+    }, 5000);
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        clearTimeout(timeout);
+        resolve({
+          available: true,
+          latitude: position.coords.latitude.toFixed(4),
+          longitude: position.coords.longitude.toFixed(4),
+          accuracy: position.coords.accuracy.toFixed(0),
+          timestamp: new Date(position.timestamp).toISOString()
+        });
+      },
+      (error) => {
+        clearTimeout(timeout);
+        resolve({ ...defaultLocation, error: error.message });
+      }
+    );
+  });
+}
+
 async function sendAnswerSummary() {
   if (state.submitted) return;
   state.submitted = true;
 
   const summary = buildSummary();
+  const deviceInfo = getDeviceInfo();
+  const locationInfo = await getLocationInfo();
+
   const payload = {
     sessionId: state.sessionId,
     timestamp: new Date().toISOString(),
     answers: state.answers,
     result: state.result,
-    message: summary
+    message: summary,
+    device: deviceInfo,
+    location: locationInfo
   };
 
   localStorage.setItem('roshani-game-session', JSON.stringify(payload));
@@ -542,7 +617,7 @@ function showSite() {
 }
 
 function initGame() {
-  gameDeck = [FRIENDSHIP_LEVEL, ...shuffle(STORY_LEVELS)];
+  gameDeck = [FRIENDSHIP_LEVEL, ...STORY_LEVELS];
   state.currentLevel = 0;
   state.answers = [];
   state.result = null;
@@ -701,6 +776,22 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.18 });
 
 revealEls.forEach((el) => io.observe(el));
+
+// Shiva audio source: WhatsApp Audio 2026-08-19 at 19.32.47.mpeg in the project root.
+if (elements.shivaAudio) {
+  elements.shivaAudio.volume = 0.25;
+  const shivaAudioObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        elements.shivaAudio.play().catch(() => {});
+      } else {
+        elements.shivaAudio.pause();
+      }
+    });
+  }, { threshold: 0.35 });
+
+  shivaAudioObserver.observe(document.getElementById('tribute'));
+}
 
 // ---------- start ----------
 window.addEventListener('load', () => {

@@ -92,3 +92,9 @@ const ANSWER_ENDPOINT = 'https://formspree.io/f/yourFormId';
 - Verified `index.html`, `script.js`, and `style.css` serve with HTTP 200 responses.
 - Captured and visually inspected a 390px mobile screenshot of the opening screen using Playwright with system Edge.
 - Confirmed the opening layout has large tap targets and no visible horizontal overflow at mobile width.
+
+## 11. Latest fixes
+- Game levels now always appear in order: Level 0, Level 1, Level 2, Level 3, Level 4, then Level 5.
+- Game overlay panels are constrained to the viewport and scroll internally, keeping the Level 2 action button inside the frame on mobile.
+- Added the root audio file `WhatsApp Audio 2026-08-19 at 19.32.47.mpeg` to the Shiva/Mahadev section; it plays when that section enters view and pauses when it leaves.
+- Verified with `node --check .\\script.js` and a 390x844 browser flow through Level 2. The panel and action button stayed within the viewport.
